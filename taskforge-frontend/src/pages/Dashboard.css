@@ -1,0 +1,204 @@
+/* 🌌 Background */
+.dashboard {
+  min-height: 100vh;
+  padding: 30px;
+  background: white;
+  color: #e2e8f0;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+}
+
+/* 🧠 Title */
+.title {
+  font-size: 32px;
+  margin-bottom: 25px;
+  font-weight: bold;
+  color: blue;
+  text-align: left;
+}
+
+/* 🔍 Controls */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+/* Inputs & dropdowns */
+.controls input,
+.controls select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid blue;
+  background: rgba(255, 255, 255, 0.08);
+  color: black;
+  backdrop-filter: blur(10px);
+  outline: none;
+  flex: 1 1 150px; /* controlled width */
+  max-width: 220px; /* don't let it grow too large */
+}
+
+/* Focus */
+.controls input:focus,
+.controls select:focus {
+  border: 1px solid #60a5fa;
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.4);
+}
+
+/* ➕ Button */
+.controls button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.controls button:hover {
+  transform: translateY(-2px);
+}
+
+/* 🪟 Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(2, 6, 23, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px; /* prevent modal from touching edges on mobile */
+}
+
+/* Modal content */
+.modal-content {
+  background: rgba(15, 23, 42, 0.95);
+  padding: 40px 25px;
+  border-radius: 15px;
+  width: 420px;
+  max-width: 100%;
+  backdrop-filter: blur(15px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-content input {
+  color: white;
+}
+
+/* Modal inputs */
+.modal-content input,
+.modal-content select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.modal-content select {
+  background-color: black;
+}
+
+/* Buttons */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  flex: 1 1 45%;
+}
+
+.modal-buttons button:first-child {
+  background: #3b82f6;
+  color: white;
+}
+
+.modal-buttons button:last-child {
+  background: #ef4444;
+  color: white;
+}
+
+/* ======================== */
+/* 🔹 Mobile Responsiveness */
+/* ======================== */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 26px;
+    text-align: center;
+  }
+
+  .controls {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* Keep inputs moderate width */
+  .controls input,
+  .controls select {
+    flex: 1 1 auto;
+    min-width: 120px;
+    max-width: 180px;
+  }
+
+  .controls button {
+    flex: 1 1 auto;
+    min-width: 100px;
+  }
+
+  .modal-content {
+    padding: 25px 15px;
+    width: 95%;
+  }
+
+  .modal-buttons button {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .controls input,
+  .controls select {
+    padding: 8px 10px;
+    flex: 1 1 100%; /* Items take full width on small phones */
+    max-width: none;
+  }
+
+  .controls button {
+    padding: 8px 10px;
+    min-width: 100px;
+  }
+
+  .modal-content {
+    padding: 20px 10px;
+  }
+
+  .modal-buttons button {
+    flex: 1 1 100%; /* buttons stack on very small screens */
+  }
+}

@@ -1,0 +1,152 @@
+/* Reset default margin/padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background: blue;
+}
+
+/* Card */
+.login-card {
+  background: #fff;
+  padding: 65px 70px ;
+  border-radius: 12px;
+  width: 450px;
+  height: 400px;
+  max-width: 90%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  border: none; /* remove extra white border if any */
+}
+
+/* App Title */
+.app-title {
+  font-size: 38px;
+  color: #4caf50;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+/* Login heading */
+.login-card h2 {
+  color: #333;
+  margin-bottom: 20px;
+ font-size: 25px;
+}
+
+/* Inputs */
+.login-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 25px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.3s;
+}
+
+.login-card input:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+/* Password field wrapper */
+.password-field {
+  position: relative;
+}
+
+.flink{
+  font-family: 14px;
+}
+
+/* Toggle password */
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  cursor: pointer;
+  color: #4caf50;
+  font-weight: bold;
+  user-select: none;
+}
+
+/* Button */
+.login-card button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-card button:hover {
+  background-color: #388e3c;
+}
+
+/* Error message */
+.error {
+  color: red;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* Forgot password link */
+.login-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #4caf50;
+  text-decoration: none;
+}
+
+.login-card a:hover {
+  text-decoration: underline;
+}
+
+
+.login-link {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #4caf50;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-card {
+    width: 90%;
+    padding: 25px;
+  }
+  .app-title {
+    font-size: 32px;
+  }
+}
