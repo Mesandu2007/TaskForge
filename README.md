@@ -75,29 +75,81 @@ It allows users to manage tasks efficiently with authentication, filtering, anal
 * Nodemailer (email service)
 
 ---
+Frontend
 
-## 📁 Project Structure
+frontend/
+├── src/
+│   ├── components/        
+│   │   ├── Header.jsx
+│   │   ├── ProfileMenu.jsx
+│   │   ├── ProfileMenu.css
+│   │   ├── TaskCard.jsx
+│   │   ├── TaskCard.css
+│   │   ├── TaskList.jsx
+│   │   └── TaskList.css
+│   │
+│   ├── context/           
+│   │   └── SocketContext.jsx
+│   │
+│   ├── pages/             
+│   │   ├── Dashboard.jsx
+│   │   ├── Dashboard.css
+│   │   ├── Login.jsx
+│   │   ├── Login.css
+│   │   ├── Register.jsx
+│   │   ├── Register.css
+│   │   ├── ForgotPassword.jsx
+│   │   ├── ForgotPassword.css
+│   │   ├── ResetPassword.jsx
+│   │   └── reset.css
+│   │
+│   ├── services/          
+│   │
+│   ├── App.jsx            
+│   ├── main.jsx           
+│   └── index.css          
+│
+├── index.html
+├── package.json
+├── package-lock.json
+├── eslint.config.js
+└── .gitignore
+
+
+
+---
+Backend
 
 taskforge/
 │
 ├── backend/
 │   ├── routes/
 │   ├── models/
-│   ├── middleware/
 │   ├── config/
 │   ├── utils/
 │   └── app.js
 │
 ├── frontend/
 │   ├── src/
-│   │   ├── pages/
-│   │   ├── components/
-│   │   ├── services/
-│   │   └── styles/
-│   └── package.json
+│   ├── package.json
 │
 ├── .gitignore
 └── README.md
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
