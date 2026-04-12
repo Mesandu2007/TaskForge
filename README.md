@@ -79,41 +79,58 @@ Frontend
 
 frontend/
 ├── src/
-│   ├── components/        
-│   │   ├── Header.jsx
-│   │   ├── ProfileMenu.jsx
-│   │   ├── ProfileMenu.css
-│   │   ├── TaskCard.jsx
-│   │   ├── TaskCard.css
-│   │   ├── TaskList.jsx
-│   │   └── TaskList.css
-│   │
-│   ├── context/           
-│   │   └── SocketContext.jsx
-│   │
-│   ├── pages/             
-│   │   ├── Dashboard.jsx
-│   │   ├── Dashboard.css
-│   │   ├── Login.jsx
-│   │   ├── Login.css
-│   │   ├── Register.jsx
-│   │   ├── Register.css
-│   │   ├── ForgotPassword.jsx
-│   │   ├── ForgotPassword.css
-│   │   ├── ResetPassword.jsx
-│   │   └── reset.css
-│   │
-│   ├── services/          
-│   │
-│   ├── App.jsx            
-│   ├── main.jsx           
-│   └── index.css          
+│ ├── components/
+│ │ ├── Header.jsx
+│ │ ├── ProfileMenu.jsx
+│ │ ├── ProfileMenu.css
+│ │ ├── TaskCard.jsx
+│ │ ├── TaskCard.css
+│ │ ├── TaskList.jsx
+│ │ └── TaskList.css
+│ │
+│ ├── context/
+│ │ └── SocketContext.jsx
+│ │
+│ ├── pages/
+│ │ ├── Dashboard.jsx
+│ │ ├── Dashboard.css
+│ │ ├── Login.jsx
+│ │ ├── Login.css
+│ │ ├── Register.jsx
+│ │ ├── Register.css
+│ │ ├── ForgotPassword.jsx
+│ │ ├── ForgotPassword.css
+│ │ ├── ResetPassword.jsx
+│ │ └── reset.css
+│ │
+│ ├── services/
+│ │ └── api.js
+│ │
+│ ├── App.jsx
+│ ├── main.jsx
+│ └── index.css
 │
 ├── index.html
 ├── package.json
 ├── package-lock.json
 ├── eslint.config.js
 └── .gitignore
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
