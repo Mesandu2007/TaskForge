@@ -1,4 +1,4 @@
-// src/pages/Dashboard.jsx
+
 import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 import * as api from "../services/api";
@@ -71,7 +71,7 @@ export default function Dashboard({ onLogout }) {
     if (status !== "all") temp = temp.filter(t => status === "completed" ? t.completed : !t.completed);
 
     if (sort === "new") temp.reverse();
-    else if (sort === "due") temp.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+    else if (sort === "due") temp.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));-
 
     setFiltered(temp);
   }, [search, priority, status, sort, tasks]);

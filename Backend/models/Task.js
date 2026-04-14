@@ -12,7 +12,12 @@ const taskSchema=new mongoose.Schema({
         default:'medium'
 
     },
-    description: {type: String }
+    description: {type: String },
+
+    reminderSent: {
+        type: Boolean,
+        default: false
+    }
 
 
 },{timestamps:true});

@@ -10,27 +10,38 @@ const startReminderJob = (app) => {
 
     try {
       const tasks = await Task.find({
-        dueDate: { $lte: tomorrow, $gte: now },
+        dueDate: { $lte: tomorrow },
         reminderSent: false
       }).populate('user');
+
+      if (tasks.length === 0) return;
 
       const io = app.get('io');
       const users = app.get('users');
 
       const updates = tasks.map(async (task) => {
-        if (task.user) {
+        if (task.user && task.user._id) {
           const userId = task.user._id.toString();
-          const socketId = users[userId];
+          
+          const userSockets = users.get(userId);
 
-          if (socketId) {
-            io.to(socketId).emit('reminder', {
-              message: `Task "${task.title}" is due soon!`,
-              dueDate: task.dueDate
+          if (userSockets && userSockets.size > 0) {
+            console.log(`[ALIVE] Notifying user ${userId} for task: ${task.title}`);
+            // Loop through all active connections (tabs) for this user
+            userSockets.forEach((socketId) => {
+              io.to(socketId).emit('reminder', {
+                message: `Task "${task.title}" is due soon!`,
+                dueDate: task.dueDate
+              });
             });
             
             task.reminderSent = true;
             return task.save();
+          } else {
+            
+            console.log(`[OFFLINE] User ${userId} not connected for task "${task.title}".`);
           }
+            
         }
       });
 

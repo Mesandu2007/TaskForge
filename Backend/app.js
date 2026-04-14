@@ -61,8 +61,8 @@ const io = new Server(server, {
   }
 });
 
-// store connected users
-const users = {};
+// store connected users (Map is more efficient for frequent lookups)
+const users = new Map(); 
 
 // connection
 io.on('connection', (socket) => {
@@ -70,17 +70,27 @@ io.on('connection', (socket) => {
 
   // frontend sends userId after login
   socket.on('register', (userId) => {
-    users[userId] = socket.id;
-    console.log("User registered:", userId);
+    // Store userId on the socket itself for easy retrieval on disconnect
+    socket.userId = userId;
+    
+    // Handle multiple connections for the same user (e.g., multiple tabs)
+    if (!users.has(userId)) {
+      users.set(userId, new Set());
+    }
+    users.get(userId).add(socket.id);
+    
+    console.log(`User registered: ${userId} (Socket: ${socket.id})`);
   });
 
   socket.on('disconnect', () => {
     console.log("User disconnected:", socket.id);
 
-    // efficiently remove disconnected user
-    const entry = Object.entries(users).find(([_, id]) => id === socket.id);
-    if (entry) {
-      delete users[entry[0]];
+    if (socket.userId && users.has(socket.userId)) {
+      const userSockets = users.get(socket.userId);
+      userSockets.delete(socket.id);
+      if (userSockets.size === 0) {
+        users.delete(socket.userId);
+      }
     }
   });
 });

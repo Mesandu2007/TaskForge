@@ -66,21 +66,23 @@ body, html {
 .password-field {
   position: relative;
 }
+.password-field span {
+  display: block;
+  text-align: right;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: #4caf50;
+  font-size: 12px;
+}
+
+
 
 .flink{
   font-family: 14px;
 }
 
-/* Toggle password */
-.toggle-password {
-  position: absolute;
-  right: 12px;
-  top: 12px;
-  cursor: pointer;
-  color: #4caf50;
-  font-weight: bold;
-  user-select: none;
-}
+
+
 
 /* Button */
 .login-card button {

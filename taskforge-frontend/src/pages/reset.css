@@ -1,7 +1,8 @@
 /* Wrapper */
 .reset-wrapper {
-  min-height: 80vh;
+  min-height: 90vh;
   display: flex;
+  background-color: blue;
   justify-content: center;
   align-items: center;
 }

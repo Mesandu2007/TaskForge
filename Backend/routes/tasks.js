@@ -1,4 +1,4 @@
-  // routes/tasks.js
+  
 const router = require('express').Router();
 const mongoose = require('mongoose');
 const Task = require('../models/Task');
@@ -49,7 +49,7 @@ router.put('/:id', auth, async (req, res) => {
     if (req.body.completed !== undefined) updates.completed = req.body.completed;
     if (req.body.dueDate !== undefined) {
       updates.dueDate = req.body.dueDate;
-      updates.reminderSent = false; // Reset reminder when date changes
+      updates.reminderSent = false; 
     }
     if (req.body.priority !== undefined) updates.priority = req.body.priority;
     if (req.body.description !== undefined) updates.description= req.body.description;
@@ -68,16 +68,6 @@ router.put('/:id', auth, async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
-
-
-
-
-
-
-
-
-
-
 
 
 // DELETE

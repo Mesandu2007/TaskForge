@@ -1,5 +1,4 @@
-// src/context/SocketContext.jsx
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 
 const SocketContext = createContext();
@@ -7,21 +6,43 @@ const SocketContext = createContext();
 export const useSocket = () => useContext(SocketContext);
 
 export const SocketProvider = ({ children, userId }) => {
-  const [socket, setSocket] = useState(null);
+  const socketRef = useRef(null);
 
   useEffect(() => {
     if (!userId) return;
 
-    const s = io("http://localhost:3000"); 
-    setSocket(s);
+    // ✅ create only once
+    if (!socketRef.current) {
+      const s = io("http://localhost:3000");
 
-    // register user for reminders
-    s.emit("register", userId);
+      socketRef.current = s;
 
-    return () => {
-      s.disconnect();
-    };
+      // ✅ WAIT until connected
+      s.on("connect", () => {
+        console.log("✅ Connected:", s.id);
+
+        // 🔥 register AFTER connection
+        s.emit("register", userId);
+      });
+
+      // 🔔 listen for reminders
+      s.on("reminder", (data) => {
+        console.log("🔔 Reminder received:", data);
+        alert(data.message); // test
+      });
+
+      // optional debug
+      s.on("disconnect", () => {
+        console.log("❌ Disconnected");
+      });
+    }
+
+    // ❌ DO NOT disconnect here
   }, [userId]);
 
-  return <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>;
+  return (
+    <SocketContext.Provider value={socketRef.current}>
+      {children}
+    </SocketContext.Provider>
+  );
 };

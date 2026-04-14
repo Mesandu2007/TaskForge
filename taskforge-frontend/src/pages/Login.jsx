@@ -52,6 +52,12 @@ export default function Login({onLoginSuccess}) {
             />
 
             <div className="password-field">
+              <span
+                className="toggle-password"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </span>
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password (Atleast 5 characters)"
@@ -59,12 +65,6 @@ export default function Login({onLoginSuccess}) {
                 onChange={e => setPassword(e.target.value)}
                 required
               />
-              <span
-                className="toggle-password"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? "Hide" : "Show"}
-              </span>
             </div>
 
             <button type="submit">Login</button>
