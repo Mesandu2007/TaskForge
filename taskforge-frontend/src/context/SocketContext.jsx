@@ -17,7 +17,7 @@ export const SocketProvider = ({ children, userId }) => {
 
       socketRef.current = s;
 
-      // ✅ WAIT until connected
+    
       s.on("connect", () => {
         console.log("✅ Connected:", s.id);
 

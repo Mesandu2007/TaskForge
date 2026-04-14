@@ -11,6 +11,7 @@ const startReminderJob = (app) => {
     try {
       const tasks = await Task.find({
         dueDate: { $lte: tomorrow },
+        status: { $ne: 'Completed' }, // Don't remind for finished tasks
         reminderSent: false
       }).populate('user');
 
@@ -27,7 +28,7 @@ const startReminderJob = (app) => {
 
           if (userSockets && userSockets.size > 0) {
             console.log(`[ALIVE] Notifying user ${userId} for task: ${task.title}`);
-            // Loop through all active connections (tabs) for this user
+            
             userSockets.forEach((socketId) => {
               io.to(socketId).emit('reminder', {
                 message: `Task "${task.title}" is due soon!`,
@@ -36,11 +37,13 @@ const startReminderJob = (app) => {
             });
             
             task.reminderSent = true;
-            return task.save();
           } else {
-            
             console.log(`[OFFLINE] User ${userId} not connected for task "${task.title}".`);
+            // Optionally: Trigger an email reminder here using nodemailer
+            // await emailService.sendReminder(task.user.email, task.title, task.dueDate);
+            // task.reminderSent = true; 
           }
+          return task.save();
             
         }
       });
