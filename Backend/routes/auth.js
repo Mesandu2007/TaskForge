@@ -50,7 +50,7 @@ router.post('/login', async(req,res)=>{
 });
 
 
-router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 
 router.get('/google/callback',
@@ -113,8 +113,6 @@ router.post('/forgot-password', async (req, res) => {
         res.status(500).send(`Error sending email: ${error.message}`);
     }
 });
-
-
 
 
 router.post('/reset-password/:token', async (req, res) => {

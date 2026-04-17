@@ -5,8 +5,7 @@
   background-color:blue;
   color: white;
   text-align: center;
-  position: fixed;
-  bottom: 0;
+  position: relative;
   left: 0;
   font-size: 14px;
 }

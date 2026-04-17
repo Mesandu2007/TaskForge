@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Task = require('../models/Task');
 const auth = require('../middleware/auth');
 
-// GET all tasks
+
 router.get('/', auth, async (req, res) => {
   try {
     const tasks = await Task.find({ user: req.user.id });

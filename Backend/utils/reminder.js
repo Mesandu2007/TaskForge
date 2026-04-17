@@ -11,7 +11,7 @@ const startReminderJob = (app) => {
     try {
       const tasks = await Task.find({
         dueDate: { $lte: tomorrow },
-        status: { $ne: 'Completed' }, // Don't remind for finished tasks
+        status: { $ne: 'Completed' }, 
         reminderSent: false
       }).populate('user');
 
@@ -20,35 +20,37 @@ const startReminderJob = (app) => {
       const io = app.get('io');
       const users = app.get('users');
 
-      const updates = tasks.map(async (task) => {
-        if (task.user && task.user._id) {
-          const userId = task.user._id.toString();
-          
-          const userSockets = users.get(userId);
+      for (const task of tasks) {
+        try {
+          if (task.user && task.user._id) {
+            const userId = task.user._id.toString();
+            const userSockets = users.get(userId);
 
-          if (userSockets && userSockets.size > 0) {
-            console.log(`[ALIVE] Notifying user ${userId} for task: ${task.title}`);
-            
-            userSockets.forEach((socketId) => {
-              io.to(socketId).emit('reminder', {
-                message: `Task "${task.title}" is due soon!`,
-                dueDate: task.dueDate
+            if (userSockets && userSockets.size > 0) {
+              console.log(`[ALIVE] Notifying user ${userId} for task: ${task.title}`);
+              userSockets.forEach((socketId) => {
+                io.to(socketId).emit('reminder', {
+                  message: `Task "${task.title}" is due soon!`,
+                  dueDate: task.dueDate
+                });
               });
-            });
+            } else {
+              console.log(`[OFFLINE] User ${userId} not connected for task "${task.title}".`);
+            }
+
             
             task.reminderSent = true;
+            await task.save();
           } else {
-            console.log(`[OFFLINE] User ${userId} not connected for task "${task.title}".`);
-            // Optionally: Trigger an email reminder here using nodemailer
-            // await emailService.sendReminder(task.user.email, task.title, task.dueDate);
-            // task.reminderSent = true; 
+          
+            console.warn(`[SKIP] Task "${task.title}" has no associated user.`);
+            task.reminderSent = true;
+            await task.save();
           }
-          return task.save();
-            
+        } catch (taskErr) {
+          console.error(`Error processing reminder for task ${task._id}:`, taskErr);
         }
-      });
-
-      await Promise.all(updates);
+      }
 
     } catch (err) {
       console.error("Reminder Job Error:", err);

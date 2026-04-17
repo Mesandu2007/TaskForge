@@ -75,6 +75,9 @@ export default function Register({ onLoginSuccess }) {
             />
 
             <div className="password-field">
+              <span onClick={() => setShowPassword(!showPassword)}>
+                {showPassword ? "Hide" : "Show"}
+              </span>
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password (min 5 chars)"
@@ -82,12 +85,12 @@ export default function Register({ onLoginSuccess }) {
                 onChange={e => setPassword(e.target.value)}
                 required
               />
-              <span onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? "Hide" : "Show"}
-              </span>
             </div>
 
             <div className="password-field">
+              <span onClick={() => setShowConfirm(!showConfirm)}>
+                {showConfirm ? "Hide" : "Show"}
+              </span>
               <input
                 type={showConfirm ? "text" : "password"}
                 placeholder="Confirm Password"
@@ -95,9 +98,6 @@ export default function Register({ onLoginSuccess }) {
                 onChange={e => setConfirmPassword(e.target.value)}
                 required
               />
-              <span onClick={() => setShowConfirm(!showConfirm)}>
-                {showConfirm ? "Hide" : "Show"}
-              </span>
             </div>
 
             <button type="submit">Register</button>

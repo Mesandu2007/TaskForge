@@ -1,48 +1,65 @@
+/* Global reset to prevent padding from expanding widths */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+
+
+
 /* Wrapper */
 .register-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 140px);
+  min-height: 90vh; 
+  padding: 40px 20px; 
   background:blue;
   font-family: Arial, sans-serif;
 }
 
-/* Card */
+/* Card - Aligned with Login Card metrics */
 .register-card {
   background: #fff;
-  padding: 35px 30px;
+  padding: 65px 70px; /* Match Login.css padding */
   border-radius: 12px;
   width: 450px;
   max-width: 90%;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Ensures contents don't spill out */
   text-align: center;
 }
 
-/* Heading */
 .register-card h2 {
-  margin-bottom: 20px;
   color: #333;
+  margin-bottom: 25px;
+  font-size: 25px;
 }
 
 /* Inputs */
 .register-card input {
   width: 100%;
   padding: 12px;
-  margin-bottom: 15px;
+  margin-bottom: 25px; /* Match Login.css margin */
   border-radius: 6px;
   border: 1px solid #ccc;
+  outline: none;
+  transition: 0.3s;
 }
 
-/* Password wrapper */
-.password-field {
-  position: relative;
+.register-card input:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
 }
 
+/* Toggle - Aligned with Login.css block style */
 .password-field span {
-  position: absolute;
-  right: 10px;
-  top: 12px;
+  display: block;
+  text-align: right;
+  margin-bottom: 10px;
   cursor: pointer;
   color: #4caf50;
   font-size: 12px;
@@ -52,16 +69,17 @@
 .register-card button {
   width: 100%;
   padding: 12px;
-  background: #4caf50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 6px;
+  font-weight: bold;
   cursor: pointer;
-  margin-top: 5px;
+  transition: 0.3s;
 }
 
 .register-card button:hover {
-  background: #388e3c;
+  background-color: #388e3c;
 }
 
 /* Divider */
@@ -107,5 +125,9 @@
 @media (max-width: 480px) {
   .register-card {
     width: 90%;
+    padding: 30px 25px;
+  }
+  .register-card h2 {
+    font-size: 20px;
   }
 }

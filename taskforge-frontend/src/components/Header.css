@@ -9,3 +9,11 @@
   font-weight: bold;
   letter-spacing: 2px;
 }
+
+@media (max-width: 480px) {
+  .header {
+    font-size: 18px;
+    padding: 15px 0;
+    letter-spacing: 1px;
+  }
+}
