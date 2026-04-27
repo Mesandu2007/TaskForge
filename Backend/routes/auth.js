@@ -6,7 +6,6 @@ const passport= require('passport');
 const crypto = require('crypto');
 
 
-
 router.post('/register', async(req,res)=>{
     try {
         const {email, password, name} = req.body;
@@ -65,10 +64,6 @@ router.get('/google/callback',
     res.redirect(`http://localhost:5173/login?token=${token}`);
   }
 );
-
-
-
-
 
 const nodemailer = require('nodemailer');
 const transporter = nodemailer.createTransport({

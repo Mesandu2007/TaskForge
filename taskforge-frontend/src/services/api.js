@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000"; // backend URL
+const API_URL = "http://localhost:5000"; // backend URL
 
 const api = axios.create({
   baseURL: API_URL,
@@ -12,11 +12,18 @@ export const setAuthToken = (token) => {
   else delete api.defaults.headers.common["Authorization"];
 };
 
+// Automatically set token if it exists in localStorage (fixes refresh bug)
+const storedToken = localStorage.getItem("token");
+if (storedToken) {
+  setAuthToken(storedToken);
+}
+
 // Auth routes
 export const login = (email, password) => api.post("/auth/login", { email, password });
 export const register = (email, password, name) => api.post("/auth/register", { email, password, name });
 export const forgotPassword = (email) => api.post("/auth/forgot-password", { email });
 export const resetPassword = (token, password) => api.post(`/auth/reset-password/${token}`, { password });
+export const googleLogin = (token) => api.post("/auth/google", { token });
 
 // Task routes
 export const getTasks = () => api.get("/tasks").then(res => res.data);
