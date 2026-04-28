@@ -33,7 +33,7 @@
   align-items: center;
   min-height: 90vh; 
   padding: 40px 20px; 
-  background:blue;
+  background:rgb(2, 2, 79);
   font-family: Arial, sans-serif;
 }
 
@@ -42,7 +42,7 @@
   background: #fff;
   padding: 65px 70px; /* Match Login.css padding */
   border-radius: 12px;
-  width: 450px;
+  width: 500px;
   max-width: 90%;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden; /* Ensures contents don't spill out */
@@ -78,7 +78,7 @@
   margin-bottom: 10px;
   cursor: pointer;
   color: #4caf50;
-  font-size: 12px;
+  font-size: 20px;
 }
 
 /* Button */

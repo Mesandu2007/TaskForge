@@ -19,7 +19,8 @@ export default function ProfileMenu() {
 
       {open && (
         <div className="dropdown">
-          <p className="user-email">{user?.email || "User"}</p>
+          <p className="user-name">{user?.name || user?.displayName || "User"}</p>
+          <p className="user-email">{user?.email || ""}</p>
           <hr />
           <button onClick={handleLogout}>Sign Out</button>
         </div>
